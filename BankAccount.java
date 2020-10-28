@@ -4,6 +4,7 @@ public class BankAccount{
   private String password;
   public BankAccount(double bal, int id, String pass){
     balance = bal;
+    bal = 0;
     accountID = id;
     password = pass;
   }
@@ -21,18 +22,26 @@ public class BankAccount{
   public boolean deposit(double amount){
     if(amount >= 0){
       balance += amount;
+      System.out.print("Deposit successful: ");
       return true;
     }
     else{
+      System.out.print("You can't deposite negative dollars: ");
       return false;
     }
   }
   public boolean withdraw(double amount){
-    if(amount < 0 || balance < amount){
+    if(amount < 0){
+      System.out.print("You can't withdraw negative dollars: ");
+      return false;
+    }
+    else if(balance < amount){
+      System.out.println("You're too broke: ");
       return false;
     }
     else{
       balance -= amount;
+      System.out.print("Withdrawal successful. You have funds: ");
       return true;
     }
   }
